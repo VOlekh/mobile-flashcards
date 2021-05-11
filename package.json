@@ -17,8 +17,11 @@
     "react-native-gesture-handler": "~1.10.2",
     "react-native-reanimated": "~2.1.0",
     "react-native-screens": "~3.0.0",
+    "react-native-touchable-safe": "^1.1.5",
     "react-native-unimodules": "~0.13.3",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "style-sheet": "^4.0.4",
+    "text": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
