@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet,  Text,  View,  KeyboardAvoidingView,  Platform,  StatusBar} from "react-native";
+import {StyleSheet,  Text,  View,   Platform,  StatusBar} from "react-native";
 import AddDeck from "./components/AddDeck";
 import DecksList from "./components/DecksList";
 import { createStore } from "redux";
@@ -10,12 +10,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import Deck from "./components/Deck";
-import AddCard from "./components/AddCard";
-import Quiz from "./components/Quiz";
-import Constants from "expo-constants";
+// import Deck from "./components/IndividualDeck";
+// import Quiz from "./components/Quiz";
+
 import { FontAwesome, Entypo } from '@expo/vector-icons';
-import { setLocalNotification } from './utils/helpers';
+// import { setLocalNotification } from './utils/helpers';
+import Constants from "expo-constants";
 import { purple, white } from './utils/colors'
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
