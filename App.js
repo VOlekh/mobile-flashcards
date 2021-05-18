@@ -7,8 +7,10 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
 import Button from 'react-native-button';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { NavigationContainer } from "@react-navigation/native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+//import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 // import { createStackNavigator } from "@react-navigation/stack";
 // import Deck from "./components/IndividualDeck";
@@ -16,7 +18,7 @@ import Button from 'react-native-button';
 // import { FontAwesome, Entypo } from '@expo/vector-icons';
 // import { setLocalNotification } from './utils/helpers';
 // import Constants from "expo-constants";
-// import { purple, white } from './utilits/colors'
+import { lightBlue, white } from './utilits/colors'
 
 
 // function UdaciStatusBar({ backgroundColor, ...props }) {
@@ -78,34 +80,49 @@ import Button from 'react-native-button';
 //   );
 // }
 
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
+  );
+}
+
+function AddDack() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text >Add Deck!</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
 export default class App extends React.Component {
   componentDidMount() {
     // setLocalNotification()
   }
+
+  
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>
         <View styles={styles.container}>
 
-            <Text>Open up App.js to start working on your app!</Text>
-            <Text>Open up App.js to start working on your app!</Text>
-            <Text>Open up App.js to start working on your app!</Text>
-            <Text>Open up App.js to start working on your app!</Text>
 
-            <Button
-              containerStyle={{padding:10, height:45, overflow:'hidden', borderRadius:4, backgroundColor: 'white'}}
-              disabledContainerStyle={{backgroundColor: 'grey'}}
-              style={{fontSize: 20, color: 'green'}}>
-              Press me!
-            </Button>
+            <Text styles={styles.appTitle}>Cards project</Text>
+         
 
+            <View styles={styles.bottomTextContainer}>
+              <Text style={styles.bottomText}>A mobile application (Android or iOS - or both) that allows users to study collections of flashcards. The app allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.</Text>
+            </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity >
               <View style={styles.deck}>
                   {/* <Text style={styles.title}>{title}</Text> */}
                   <Text style={styles.title}>Deck 1</Text>
                   {/* <Text style={styles.count}>{length} cards</Text> */}
-                  <Text > 52 cards</Text>
+                  <Text style={styles.count}>73 cards</Text>
                </View>
             </TouchableOpacity>
 
@@ -115,7 +132,7 @@ export default class App extends React.Component {
                   {/* <Text style={styles.title}>{title}</Text> */}
                   <Text style={styles.title}>Deck 2</Text>
                   {/* <Text style={styles.count}>{length} cards</Text> */}
-                  <Text>52 cards</Text>
+                  <Text style={styles.count}>52 cards</Text>
                </View>
             </TouchableOpacity>
 
@@ -124,9 +141,26 @@ export default class App extends React.Component {
                   {/* <Text style={styles.title}>{title}</Text> */}
                   <Text style={styles.title}>Deck 3</Text>
                   {/* <Text style={styles.count}>{length} cards</Text> */}
-                  <Text>3 cards</Text>
+                  <Text style={styles.count}>2 cards</Text>
                </View>
             </TouchableOpacity>
+
+       
+
+            <NavigationContainer style={styles.navContainer}>
+              <Tab.Navigator>
+                  <Tab.Screen name="Home" component={HomeScreen} />
+                  <Tab.Screen name="Add Dack" component={AddDack}     
+                              // options={{
+                              //   tabBarLabel: "Add Deck",
+                              //   tabBarIcon: ({ color }) => (
+                              //     <Entypo name="add-to-list" size={30} color={color} />
+                              //   )
+                              // }}
+                 />
+          
+              </Tab.Navigator>
+            </NavigationContainer>
 
         </View>
       </Provider>
@@ -136,18 +170,48 @@ export default class App extends React.Component {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textDecorationColor : '#b93fb3',
+  deck: {
+    backgroundColor: "#93B7BE",
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 5, 
+  
   },
 
   title: {
     fontSize: 30,
     fontWeight: 'bold',
+    color: "#fff",
+  },
+
+  count: {
+    fontSize: 16,
+    color: "#464646",
+  },
+
+  appTitle:{
+    fontSize: 60,
+    fontWeight: 'bold',
     color: "#f0f",
- 
+  },
+
+  bottomTextContainer: {
+    padding: 20,
+    marginVertical: 80,
+    marginHorizontal: 16,
+    alignItems: "center",
+    justifyContent: "center",
+
+  },
+
+  bottomText:{
+    fontSize: 16,
+    color: "#464646",
+  },
+
+  
+  navContainer: {
+    backgroundColor: "#93B7BE",
   },
 });
