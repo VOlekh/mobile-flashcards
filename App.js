@@ -9,6 +9,8 @@ import middleware from "./middleware";
 import Button from 'react-native-button';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+
 // import { NavigationContainer } from "@react-navigation/native";
 //import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -146,19 +148,35 @@ export default class App extends React.Component {
             </TouchableOpacity>
 
        
+{/* https://reactnavigation.org/docs/tab-based-navigation */}
+
 
             <NavigationContainer style={styles.navContainer}>
-              <Tab.Navigator>
-                  <Tab.Screen name="Home" component={HomeScreen} />
-                  <Tab.Screen name="Add Dack" component={AddDack}     
-                              // options={{
-                              //   tabBarLabel: "Add Deck",
-                              //   tabBarIcon: ({ color }) => (
-                              //     <Entypo name="add-to-list" size={30} color={color} />
-                              //   )
-                              // }}
-                 />
+              <Tab.Navigator
+                  screenOptions={({ route }) => ({
+                    tabBarIcon: ({ focused, color, size }) => {
+                      let Home;
           
+                      if (route.name === 'Home') {
+                        Home = focused
+                          ? 'ios-home'
+                          : 'ios-home-outline';
+                      } else if (route.name === 'AddDack') {
+                        Home = focused 
+                          ? 'ios-add-circle' 
+                          : 'ios-add-circle-outline';
+                      }
+                      return <Ionicons name={Home} size={size} color={color} />;
+                    },
+                  })}
+                  tabBarOptions={{
+                    activeTintColor:"#464646",
+                    inactiveTintColor: "#93B7BE",
+                  }}
+              >
+                  <Tab.Screen name="Home" component={HomeScreen} />
+                  <Tab.Screen name="AddDack" component={AddDack} />
+            
               </Tab.Navigator>
             </NavigationContainer>
 
