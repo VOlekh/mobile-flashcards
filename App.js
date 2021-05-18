@@ -1,11 +1,12 @@
 import React from "react";
-import {StyleSheet,  Text,  View,   Platform,  StatusBar} from "react-native";
+import {StyleSheet,  Text,  View,   Platform, TouchableOpacity, StatusBar} from "react-native";
 // import AddDeck from "./components/AddDeck";
 // import DecksList from "./components/DecksList";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
+import Button from 'react-native-button';
 // import { NavigationContainer } from "@react-navigation/native";
 // import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -84,10 +85,50 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>
-       <View>
-          <Text>Open up App.js to start working on your app!</Text>
-       <StatusBar style="auto" />
-    </View>
+        <View styles={styles.container}>
+
+            <Text>Open up App.js to start working on your app!</Text>
+            <Text>Open up App.js to start working on your app!</Text>
+            <Text>Open up App.js to start working on your app!</Text>
+            <Text>Open up App.js to start working on your app!</Text>
+
+            <Button
+              containerStyle={{padding:10, height:45, overflow:'hidden', borderRadius:4, backgroundColor: 'white'}}
+              disabledContainerStyle={{backgroundColor: 'grey'}}
+              style={{fontSize: 20, color: 'green'}}>
+              Press me!
+            </Button>
+
+
+            <TouchableOpacity>
+              <View style={styles.deck}>
+                  {/* <Text style={styles.title}>{title}</Text> */}
+                  <Text style={styles.title}>Deck 1</Text>
+                  {/* <Text style={styles.count}>{length} cards</Text> */}
+                  <Text > 52 cards</Text>
+               </View>
+            </TouchableOpacity>
+
+            
+            <TouchableOpacity>
+              <View style={styles.deck}>
+                  {/* <Text style={styles.title}>{title}</Text> */}
+                  <Text style={styles.title}>Deck 2</Text>
+                  {/* <Text style={styles.count}>{length} cards</Text> */}
+                  <Text>52 cards</Text>
+               </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <View style={styles.deck}>
+                  {/* <Text style={styles.title}>{title}</Text> */}
+                  <Text style={styles.title}>Deck 3</Text>
+                  {/* <Text style={styles.count}>{length} cards</Text> */}
+                  <Text>3 cards</Text>
+               </View>
+            </TouchableOpacity>
+
+        </View>
       </Provider>
     );
   }
@@ -100,5 +141,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    textDecorationColor : '#b93fb3',
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: "#f0f",
+ 
   },
 });

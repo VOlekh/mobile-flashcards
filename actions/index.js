@@ -22,7 +22,7 @@ export function addDeck(deck) {
   export function addCard(deckTitle, question) {
     return {
       type: ADD_CARD,
-      deckTitle,
+      title,
       question,
     };
   }
@@ -30,14 +30,14 @@ export function addDeck(deck) {
   export function deleteDeck(deckTitle) {
     return {
       type: DELETE_DECK,
-      deckTitle,
+      title,
     };
   }
-  
+
   export function deleteCard(deckTitle, question) {
     return {
       type: DELETE_CARD,
-      deckTitle,
+      title,
       question,
     };
   }
