@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 5,
-    alignItems: "center",
+   // alignItems: "center",
   },
 
   navConttainer:{
@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     alignItems: "center",
     justifyContent: "center",
+
   
    // backgroundColor: "#40676E", 
   },
@@ -195,8 +196,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     alignItems: "center",
     justifyContent: "center",
-    
-
+    //backgroundColor: "#D5C7BC", 
+    backgroundColor: "#d9d9d9",
+    borderRadius: 5, 
   },
 
   topText:{
