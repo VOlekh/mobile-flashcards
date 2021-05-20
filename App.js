@@ -1,13 +1,15 @@
-import React from "react";
-import {StyleSheet,  Text,  View,   Platform, TouchableOpacity, StatusBar} from "react-native";
+import React, { Component } from "react";
+import {StyleSheet,  Button, Text,  View,   Platform, TouchableOpacity, StatusBar} from "react-native";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
-import Button from 'react-native-button';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+//import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import { NavigationContainer } from "@react-navigation/native";
 // import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -96,6 +98,27 @@ export default class App extends React.Component {
                </View>
             </TouchableOpacity>
 
+            <TouchableOpacity>
+            <View style= {styles.button}>
+              <Button
+                  title="Add Card"
+                  color= "#464646"
+                  onPress={() => Alert.alert('Card added')}
+                />
+            </View>  
+            
+            <View style= {styles.button}>
+              <Button
+                  title="Start Quiz"
+                  color= "#464646"
+                  onPress={() => Alert.alert('Quiz to begin')}
+                /> 
+            </View>  
+
+
+            </TouchableOpacity>
+
+
        
 {/* https://reactnavigation.org/docs/tab-based-navigation */}
 
@@ -128,6 +151,7 @@ export default class App extends React.Component {
             
               </Tab.Navigator>
             </NavigationContainer>
+            
 
         </View>
       </Provider>
@@ -201,11 +225,28 @@ const styles = StyleSheet.create({
     borderRadius: 5, 
   },
 
+
   topText:{
     fontSize: 16,
     color: "#464646",
     fontStyle: "italic",
     textAlign:  "center",
   },
+
+  
+ button: {
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "#D5C7BC", 
+    backgroundColor: "#d9d9d9",
+    borderRadius: 5,
+    shadowColor:"#454545",
+  },
+
+
+
 
 });
