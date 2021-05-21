@@ -1,6 +1,6 @@
 export const decks = {
   Deck_1: {
-    title: "Deck #1 / JavaScript",
+    title: "JavaScript",
     questions: [
       {
         question: "What is JavaScript??",
@@ -18,7 +18,7 @@ export const decks = {
     ],
   },
   Deck_2: {
-    title: "Deck #2 / React",
+    title: "React",
     questions: [
       {
         question: "Explain React in simple terms",

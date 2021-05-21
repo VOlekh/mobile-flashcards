@@ -4,17 +4,13 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import middleware from "./middleware";
+import AppNavigation from "./components/AppNavigation";
+//import AppHeader from "./components/Header";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-//import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-// import { createStackNavigator } from "@react-navigation/stack";
 // import Deck from "./components/IndividualDeck";
 // import Quiz from "./components/Quiz";
 // import { FontAwesome, Entypo } from '@expo/vector-icons';
@@ -25,23 +21,23 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 // import DecksList from "./components/DecksList";
 //<a href='https://pngtree.com/so/black-and-white'>black and white png from pngtree.com</a>
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+// function DeckList() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Home!</Text>
+//     </View>
+//   );
+// }
 
-function AddDack() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text >Add Deck!</Text>
-    </View>
-  );
-}
+// function AddDeck() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text >Add Deck!</Text>
+//     </View>
+//   );
+// }
 
-const Tab = createBottomTabNavigator();
+// const Tab = createBottomTabNavigator();
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -52,84 +48,22 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>
-        <View >
-
-            <View style={styles.appTitleContainer}>
-              <Text style={styles.appTitle}>Cards project</Text>
-            </View>
-
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <View style={styles.line} />
-                <View>
-                <Text style={styles.appTitleSmall}> IT CARDS </Text>
-                </View>
-                <View  style={styles.line} />
-            </View>
-
-            <View style={styles.topTextContainer}>
-              <Text style={styles.topText}>Study collections of flashcards, create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.</Text>
-            </View>
-
-            <TouchableOpacity >
-              <View style={styles.deck}>
-                  {/* <Text style={styles.title}>{title}</Text> */}
-                  <Text style={styles.title}>Deck 1</Text>
-                  {/* <Text style={styles.count}>{length} cards</Text> */}
-                  <Text style={styles.count}>73 cards</Text>
-               </View>
-            </TouchableOpacity>
-
-            
-            <TouchableOpacity>
-              <View style={styles.deck}>
-                  {/* <Text style={styles.title}>{title}</Text> */}
-                  <Text style={styles.title}>Deck 2</Text>
-                  {/* <Text style={styles.count}>{length} cards</Text> */}
-                  <Text style={styles.count}>52 cards</Text>
-               </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View style={styles.deck}>
-                  {/* <Text style={styles.title}>{title}</Text> */}
-                  <Text style={styles.title}>Deck 3</Text>
-                  {/* <Text style={styles.count}>{length} cards</Text> */}
-                  <Text style={styles.count}>2 cards</Text>
-               </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-            <View style= {styles.button}>
-              <Button
-                  title="Add Card"
-                  color= "#464646"
-                  onPress={() => Alert.alert('Card added')}
-                />
-            </View>  
-            
-            <View style= {styles.button}>
-              <Button
-                  title="Start Quiz"
-                  color= "#464646"
-                  onPress={() => Alert.alert('Quiz to begin')}
-                /> 
-            </View>  
-
-
-            </TouchableOpacity>
-
-
+         <NavigationContainer>
+            <AppNavigation />
+         </NavigationContainer>
+        
        
 {/* https://reactnavigation.org/docs/tab-based-navigation */}
-
+{/* 
 
             <NavigationContainer style={styles.navConttainer}>
               <Tab.Navigator
+              initialRouteName="Home"
                   screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                       let Home;
           
-                      if (route.name === 'Home') {
+                      if (route.name === 'DeckList') {
                         Home = focused
                           ? 'ios-home'
                           : 'ios-home-outline';
@@ -146,20 +80,21 @@ export default class App extends React.Component {
                     inactiveTintColor: "#93B7BE",
                   }}
               >
-                  <Tab.Screen name="Home" component={HomeScreen} />
-                  <Tab.Screen name="AddDack" component={AddDack} />
+                  <Tab.Screen name="Home" component={DeckList} />
+                  <Tab.Screen name="AddDeck" component={AddDeck} />
+                
             
               </Tab.Navigator>
             </NavigationContainer>
-            
+             */}
 
-        </View>
       </Provider>
     );
   }
 }
 
 
+// -------------Styles------------------------
 const styles = StyleSheet.create({
   deck: {
     backgroundColor: "#93B7BE",
@@ -170,9 +105,6 @@ const styles = StyleSheet.create({
    // alignItems: "center",
   },
 
-  navConttainer:{
-   
-  },
 
   title: {
     fontSize: 30,
@@ -185,34 +117,8 @@ const styles = StyleSheet.create({
     color: "#464646",
   },
 
-  appTitleContainer:{
-    padding: 20,
-    marginBottom: 7,
-    marginTop:80,
-    marginHorizontal: 16,
-    alignItems: "center",
-    justifyContent: "center",
 
-  
-   // backgroundColor: "#40676E", 
-  },
-
-  appTitle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: "#93B7BE",
-  },
-
-  appTitleSmall: {
-    fontSize: 15,
-    color: "#93B7BE",
-  },
-
-  line:{
-    flex: 1, 
-    height: 0.7, 
-    backgroundColor: "#bfbfbf"
-  },
+ 
 
   topTextContainer: {
     padding: 20,
