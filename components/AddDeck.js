@@ -28,9 +28,9 @@ return (
         
         <View style= {styles.button}>
             <Button
-                title="Start Quiz"
+                title="Save"
                 color= "#464646"
-                onPress={() => Alert.alert('Quiz to begin')}
+                onPress={() => Alert.alert('Save')}
             /> 
         </View>
 
