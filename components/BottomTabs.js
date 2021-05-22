@@ -1,27 +1,9 @@
 
 import React from "react";
-import { SafeAreaView, Text, View,  StyleSheet,  Platform,  TouchableOpacity,  FlatList} from "react-native";
-import { connect } from "react-redux";
-import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-
-
-function DeckList() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Home!</Text>
-      </View>
-    );
-  }
-  
-  function AddDeck() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text >Add Deck!</Text>
-      </View>
-    );
-  }
-
+import DeckList from "./DecksList"
+import AddDeck from "./AddDeck"
 
 const Tab = createBottomTabNavigator();
 
@@ -46,12 +28,12 @@ function BottomTabs() {
             },
             })}
             tabBarOptions={{
-            activeTintColor:"#464646",
-            inactiveTintColor: "#93B7BE",
+                activeTintColor:"#464646",
+                inactiveTintColor: "#93B7BE",
             }}
      >
-            <Tab.Screen name="Home" component={DeckList} />
-            <Tab.Screen name="AddDeck" component={AddDeck} />
+        <Tab.Screen name="Home" component={DeckList} />
+        <Tab.Screen name="AddDeck" component={AddDeck} />
         
     
     </Tab.Navigator>
