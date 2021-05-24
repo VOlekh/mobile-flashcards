@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Button, TextInput ,SafeAreaView, StyleSheet, } from "react-native";
+import { Text, View, Button, TextInput ,SafeAreaView, Alert, StyleSheet, } from "react-native";
 
 function AddCard( navigation, route ) {
     return (
