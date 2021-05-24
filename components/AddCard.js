@@ -1,32 +1,35 @@
 import React from "react";
-import { Text, View, Button, TextInput , StyleSheet, } from "react-native";
+import { Text, View, Button, TextInput ,SafeAreaView, StyleSheet, } from "react-native";
 
-function AddCard() {
+function AddCard( navigation, route ) {
     return (
         <View>
             <View style={styles.topTextContainer}>
                 <Text style={styles.topText}>
-                    What is the title of your new deck?
+                Enter in the question and the answer, save the new question.
                 </Text>
             </View>
 
-            <SafeAreaView style={styles.inputConteiner}>    
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
-                    placeholder="Card Question"
-                />
-            </SafeAreaView>
+            <View style={styles.deck}>
+                <Text style={styles.title}>Deck 1</Text>
+                <SafeAreaView style={styles.inputConteiner}>    
+                    <TextInput
+                        style={styles.input}
+                        // onChangeText={onChangeText}
+                        // value={text}
+                        placeholder="Card Question"
+                    />
+                </SafeAreaView>
 
-            <SafeAreaView style={styles.inputConteiner}>    
-                <TextInput
-                    style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
-                    placeholder="Card Answer"
-                />
-            </SafeAreaView>
+                <SafeAreaView style={styles.inputConteiner}>    
+                    <TextInput
+                        style={styles.input}
+                        // onChangeText={onChangeText}
+                        // value={text}
+                        placeholder="Card Answer"
+                    />
+                </SafeAreaView>
+            </View>
 
             <View style= {styles.button}>
                 <Button
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
     deck: {
       backgroundColor: "#93B7BE",
       padding: 20,
-      marginVertical: 8,
+      marginVertical: 16,
       marginHorizontal: 16,
       borderRadius: 5,
      // alignItems: "center",
@@ -94,15 +97,14 @@ const styles = StyleSheet.create({
 
     input: {
         height: 60,
-        margin: 12,
         padding: 10,
         borderWidth: 0.7,
-        borderRadius: 2,
+        borderRadius: 5,
+        backgroundColor: "#ffffff"
       },
 
       inputConteiner:{
-        marginVertical: 20,
-        marginHorizontal: 40,
+        marginVertical: 10,
       },
 
   });

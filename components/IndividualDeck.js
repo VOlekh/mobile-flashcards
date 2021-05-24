@@ -21,7 +21,15 @@ function IndividualDeck({ navigation, route }) {
                     }
                     title="Start Quiz"
                     color= "#464646"
-                    // onPress={() => Alert.alert('Quiz to begin')}
+                /> 
+            </View>
+            <View style= {styles.button}>
+                <Button
+                    onPress={() =>
+                        navigation.navigate('AddCard', { name: 'AddCard' })
+                    }
+                    title="Add Card"
+                    color= "#464646"
                 /> 
             </View>
             
