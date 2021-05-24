@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, View,  TouchableOpacity, StyleSheet, } from "react-native";
 
-function DeckList() {
+function DeckList({navigation}) 
+{
 return (
   <View>
   
@@ -9,7 +10,11 @@ return (
         <Text style={styles.topText}>Study collections of flashcards, create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.</Text>
       </View> 
 
-    <TouchableOpacity >
+    <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('IndividualDeck', { name: 'IndividualDeck' })
+        }
+    >
       <View style={styles.deck}>
           {/* <Text style={styles.title}>{title}</Text> */}
           <Text style={styles.title}>Deck 1</Text>
@@ -45,7 +50,7 @@ export default DeckList;
 
 // -------------Styles------------------------
 const styles = StyleSheet.create({
-  
+
   deck: {
     backgroundColor: "#93B7BE",
     padding: 20,

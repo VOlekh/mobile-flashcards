@@ -1,16 +1,18 @@
 import React from "react";
-import { Text, View, Button, TextInput , StyleSheet, } from "react-native";
+import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 
-function IndividualDeck() {
+function IndividualDeck({ navigation, route }) {
     return (
-        <View>
+        <View style={styles.conteiner}>
 
-            <TextInput
-                label="Deck Title"
-                mode="outlined"
-                value={text}
-                onChangeText={(event) => setText(event)}
-            />
+            <TouchableOpacity>
+                <View style={styles.deck}>
+                    {/* <Text style={styles.title}>{title}</Text> */}
+                    <Text style={styles.title}>Deck 1</Text>
+                    {/* <Text style={styles.count}>{length} cards</Text> */}
+                    <Text style={styles.count}>XX cards</Text>
+                </View>
+            </TouchableOpacity>
 
             <View style= {styles.button}>
                 <Button
@@ -27,6 +29,10 @@ export default IndividualDeck;
 
 // -------------Styles------------------------
 const styles = StyleSheet.create({
+    conteiner: {
+        flex: 1,
+      },
+
     deck: {
       backgroundColor: "#93B7BE",
       padding: 20,
