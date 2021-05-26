@@ -2,8 +2,9 @@
 import React from "react";
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import DeckList from "./DecksList"
+import DecksList from "./DecksList"
 import AddDeck from "./AddDeck"
+
 
 const Tab = createBottomTabNavigator();
 
@@ -17,9 +18,9 @@ function BottomTabs() {
 
                 if (route.name === 'DeckList') {
                 Home = focused
-                    ? 'ios-home'
+                    ? 'ios-home-circle'
                     : 'ios-home-outline';
-                } else if (route.name === 'AddDack') {
+                } else if (route.name === 'AddDeck') {
                 Home = focused 
                     ? 'ios-add-circle' 
                     : 'ios-add-circle-outline';
@@ -32,7 +33,7 @@ function BottomTabs() {
                 inactiveTintColor: "#93B7BE",
             }}
      >
-        <Tab.Screen name="Home" component={DeckList} />
+        <Tab.Screen name="Home" component={DecksList}/>
         <Tab.Screen name="AddDeck" component={AddDeck} />
         
     
