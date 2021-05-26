@@ -1,23 +1,21 @@
-export const decks = {
-  Deck_1: {
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// initial Data:
+export const dummy_initial_data = {
+  JavaScript: {
     title: "JavaScript",
     questions: [
       {
-        question: "What is JavaScript??",
+        question: "What is JavaScript?",
         answer: "JavaScript is a client-side and server-side scripting language inserted into HTML pages and is understood by web browsers. JavaScript is also an Object-based Programming language",
       },
-      {
-        question: "What are JavaScript Data Types?",
-        answer: "Following are the JavaScript Data types:  Number, String,  Boolean,  Object,  Undefined",
-      },
-
       {
         question: "What is the use of isNaN function?",
         answer: "isNan function returns true if the argument is not a number; otherwise, it is false.",
       },
     ],
   },
-  Deck_2: {
+  React: {
     title: "React",
     questions: [
       {
@@ -28,3 +26,63 @@ export const decks = {
     ],
   },
 };
+
+const CARDS_STORAGE_KEY = "MobileFlashcards:decks";
+
+export const getDecksAsync = async () => {
+  try {
+    console.log("getDecksAsync!");
+    AsyncStorage.clear();
+    const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
+    if (value !== null) {
+      console.log("We have data!");
+      value = await JSON.parse(value);
+      return value;
+    } else {
+      console.log("Here!");
+      return dummy_initial_data;
+    }
+  } catch (e) {
+     // Error retrieving data
+    return dummy_initial_data;
+  }
+};
+
+// return the deck based on title
+export const getDeck = async (deck) => {
+  const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
+  return JSON.parse(value)[deck];
+};
+
+export const saveDeck = async (title) => {
+  const savedDeck = JSON.stringify({
+    [title]: { title: title, questions: [] },
+  });
+  await AsyncStorage.mergeItem(CARDS_STORAGE_KEY, savedDeck);
+  return JSON.parse(savedDeck);
+};
+
+export const addCardToDeck = async (title, newCard) => {
+  const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
+  const data = JSON.parse(value);
+  const deck = data[title];
+  deck.questions.push(newCard);
+  const newDeck = { [title]: deck };
+  return await AsyncStorage.mergeItem(
+    CARD_STORAGE_KEY,
+    JSON.stringify(newDeck)
+  );
+};
+
+export const removeDeck = async (deck) => {
+  const results = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
+  if (results) {
+    const data = JSON.parse(results);
+    delete data[deck];
+
+    await AsyncStorage.setItem(CARD_STORAGE_KEY, JSON.stringify(data));
+    return data;
+  }
+  return {};
+};
+
