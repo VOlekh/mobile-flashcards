@@ -18,9 +18,10 @@
     "expo-splash-screen": "~0.10.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.5.4",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-native": "~0.63.4",
+    "react-native": "^0.64.1",
     "react-native-button": "^3.0.1",
     "react-native-elements": "^3.4.1",
     "react-native-gesture-handler": "~1.10.2",
@@ -32,11 +33,12 @@
     "react-native-touchable-safe": "^1.1.5",
     "react-native-unimodules": "~0.13.3",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-web": "~0.13.12",
+    "react-native-web": "^0.16.3",
     "react-redux": "^7.2.4",
     "redux-thunk": "^2.3.0",
     "style-sheet": "^4.0.4",
-    "text": "^0.1.0"
+    "text": "^0.1.0",
+    "expo-notifications": "~0.11.6"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
