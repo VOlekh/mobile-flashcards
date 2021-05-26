@@ -1,52 +1,56 @@
-import React from "react";
-import { Text, View,  TouchableOpacity, StyleSheet, } from "react-native";
+import React, { Component } from "react";
+import { Text, View,  TouchableOpacity, StyleSheet, ScrollView } from "react-native";
+import { getDecksAsync  } from "../utilits/api";
+import { receiveDecks } from "../actions/index";
+import { connect } from "react-redux";
 
-function DeckList({navigation}) 
-{
-return (
-  <View>
-  
-      <View style={styles.topTextContainer}>
-        <Text style={styles.topText}>Study collections of flashcards, create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.</Text>
-      </View> 
 
-    <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('IndividualDeck', { name: 'IndividualDeck' })
-        }
-    >
-      <View style={styles.deck}>
-          {/* <Text style={styles.title}>{title}</Text> */}
-          <Text style={styles.title}>Deck 1</Text>
-          {/* <Text style={styles.count}>{length} cards</Text> */}
-          <Text style={styles.count}>73 cards</Text>
+
+class DecksList extends Component  {
+
+  componentDidMount() {
+    console.log("Did mount");
+    let { dispatch } = this.props;
+    getDecksAsync().then((decks) => dispatch(receiveDecks(decks)));
+  }
+   
+  render(){
+    let { navigation, route, decksList} = this.props;
+    console.log(decksList);
+    return (
+      <View>
+      
+        <View style={styles.topTextContainer}>
+          <Text style={styles.topText}>Study collections of flashcards, create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.</Text>
+        </View>
+
+        <ScrollView>
+          <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('IndividualDeck', { name: 'IndividualDeck' })
+              }
+          >
+            <View style={styles.deck}>
+                {/* <Text style={styles.title}>{decksList[0].title}</Text> */}
+                {/* <Text style={styles.count}> {decksList[0].questions.length} </Text> */}
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
-    </TouchableOpacity>
-
-    <TouchableOpacity>
-      <View style={styles.deck}>
-          {/* <Text style={styles.title}>{title}</Text> */}
-          <Text style={styles.title}>Deck 2</Text>
-          {/* <Text style={styles.count}>{length} cards</Text> */}
-          <Text style={styles.count}>52 cards</Text>
-      </View>
-    </TouchableOpacity>
-
-    <TouchableOpacity>
-      <View style={styles.deck}>
-          {/* <Text style={styles.title}>{title}</Text> */}
-          <Text style={styles.title}>Deck 3</Text>
-          {/* <Text style={styles.count}>{length} cards</Text> */}
-          <Text style={styles.count}>2 cards</Text>
-      </View>
-    </TouchableOpacity>
-
-  </View>
-  );
-
+      );
+  }
 }
 
-export default DeckList;
+function mapStateToProps(state) {
+  const decksList = Object.values(state);
+  console.log(decksList);
+  return {
+    decksList
+  };
+}
+
+export default connect(mapStateToProps)(DecksList);
+
 
 // -------------Styles------------------------
 const styles = StyleSheet.create({
