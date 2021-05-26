@@ -1,9 +1,15 @@
-import { StyleSheet } from 'react-native'
+
+//NOTIFICATIONS
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const NOTIFICATION_KEY = 'notifications';
+const NOTIFICATION_KEY = 'Cards:notifications';
+
+
 
 const styles = StyleSheet.create({
   iconContainer: {
@@ -17,13 +23,13 @@ const styles = StyleSheet.create({
   }
 })
 
-// export function timeToString(time = Date.now()) {
-//   const date = new Date(time);
-//   const todayUTC = new Date(
-//     Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
-//   );
-//   return todayUTC.toISOString().split("T")[0];
-// }
+
+
+export function getDailyReminderValue() {
+  return [{
+    today: " 👋 Don't forget to study today!"
+  }]
+}
 
 export function clearLocalNotification() {
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
@@ -32,8 +38,8 @@ export function clearLocalNotification() {
 
 export function createNotification() {
   return {
-    title: 'Stady your quiz!',
-    body: '👋 don\'t forget to tady your quiz today!',
+    title: 'Study your quiz!',
+    body: '👋 don\'t forget to study today!',
     ios: {
       sound: true,
     },
