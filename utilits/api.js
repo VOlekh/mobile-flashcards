@@ -44,33 +44,12 @@ export const getDecksAsync = async () => {
     }
   } catch (e) {
      // Error retrieving data
-    return dummy_initial_data;
+    //return dummy_initial_data;
+    console.log('Error: ', err);
   }
 };
 
-// export function getDecksAsync () {
-//   AsyncStorage.clear()
-//   return AsyncStorage.getItem(CARDS_STORAGE_KEY)
-//   .then(formatResults)
-// }
 
-// export function formatResults (results) {
-//   return results === null
-//     ? setDefaultObjectShape()
-//     : returnNonEmpty(JSON.parse(results))
-// }
-// function returnNonEmpty (deckObject) {
-//   const length = Object.keys(deckObject).length
-//   const timestamp = Date.now()
-//   return dummy_initial_data;
-// }
-
-// function setDefaultObjectShape () {
-//   let deckData = getDecksInfo()
-//   const timestamp = Date.now()
-//   AsyncStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(deckData))
-//   return dummy_initial_data;
-// }
 
 // return the deck based on title
 export const getDeck = async (deck) => {
