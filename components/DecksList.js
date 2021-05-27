@@ -15,7 +15,7 @@ class DecksList extends Component  {
   }
    
   render(){
-    let { navigation, route, decksList} = this.props;
+    let { navigation, decksList} = this.props;
     console.log(decksList);
     return (
       <View>
@@ -25,17 +25,22 @@ class DecksList extends Component  {
         </View>
 
         <ScrollView>
-          <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('IndividualDeck', { name: 'IndividualDeck' })
-              }
-          >
-            <View style={styles.deck}>
-                {/* <Text style={styles.title}>{decksList[0].title}</Text> */}
-                {/* <Text style={styles.count}> {decksList[0].questions.length} </Text> */}
-            </View>
-          </TouchableOpacity>
+          {decksList.map((deck) => {
+              return (
+                <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('IndividualDeck', { name: 'IndividualDeck' })
+                    }
+                >
+                  <View style={styles.deck}>
+                      {/* <Text style={styles.title}>{title}</Text> */}
+                      {/* <Text style={styles.count}> {decksList[0].questions.length} </Text> */}
+                  </View>
+                </TouchableOpacity>
+              )})
+          }       
         </ScrollView>
+
       </View>
       );
   }

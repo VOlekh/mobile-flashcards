@@ -11,21 +11,21 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
     <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="DecksList"
             screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
                 let Home;
 
-                if (route.name === 'DeckList') {
+                if (route.name === 'DecksList') {
                 Home = focused
-                    ? 'ios-home-circle'
+                    ? 'ios-home'
                     : 'ios-home-outline';
                 } else if (route.name === 'AddDeck') {
                 Home = focused 
                     ? 'ios-add-circle' 
                     : 'ios-add-circle-outline';
                 }
-                return <Ionicons name={Home} size={size} color={color} />;
+                return <Ionicons name={DecksList} size={size} color={color} />;
             },
             })}
             tabBarOptions={{

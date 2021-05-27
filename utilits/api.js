@@ -32,7 +32,7 @@ const CARDS_STORAGE_KEY = "MobileFlashcards:decks";
 export const getDecksAsync = async () => {
   try {
     console.log("getDecksAsync!");
-    AsyncStorage.clear();
+    //AsyncStorage.clear();
     const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
     if (value !== null) {
       console.log("We have data!");
@@ -48,13 +48,37 @@ export const getDecksAsync = async () => {
   }
 };
 
+// export function getDecksAsync () {
+//   AsyncStorage.clear()
+//   return AsyncStorage.getItem(CARDS_STORAGE_KEY)
+//   .then(formatResults)
+// }
+
+// export function formatResults (results) {
+//   return results === null
+//     ? setDefaultObjectShape()
+//     : returnNonEmpty(JSON.parse(results))
+// }
+// function returnNonEmpty (deckObject) {
+//   const length = Object.keys(deckObject).length
+//   const timestamp = Date.now()
+//   return dummy_initial_data;
+// }
+
+// function setDefaultObjectShape () {
+//   let deckData = getDecksInfo()
+//   const timestamp = Date.now()
+//   AsyncStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(deckData))
+//   return dummy_initial_data;
+// }
+
 // return the deck based on title
 export const getDeck = async (deck) => {
   const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
   return JSON.parse(value)[deck];
 };
 
-export const saveDeck = async (title) => {
+export const addDeck = async (title) => {
   const savedDeck = JSON.stringify({
     [title]: { title: title, questions: [] },
   });
@@ -62,9 +86,9 @@ export const saveDeck = async (title) => {
   return JSON.parse(savedDeck);
 };
 
-export const addCardToDeck = async (title, newCard) => {
+export const addCard = async (title, question) => {
   const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
-  const data = JSON.parse(value);
+  const data = JSON.parse(decks);
   const deck = data[title];
   deck.questions.push(newCard);
   const newDeck = { [title]: deck };
@@ -74,7 +98,7 @@ export const addCardToDeck = async (title, newCard) => {
   );
 };
 
-export const removeDeck = async (deck) => {
+export const deleteDeck = async (deck) => {
   const results = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
   if (results) {
     const data = JSON.parse(results);
