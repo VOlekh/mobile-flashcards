@@ -7,7 +7,7 @@ export const DELETE_CARD = "DELETE_CARD";
 export function receiveDecks (decks) {
     //console.log("receiveDecks")
   return {
-    type: RECEIVE_DECKSS,
+    type: RECEIVE_DECKS,
     decks,
   }
 }
