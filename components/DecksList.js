@@ -33,7 +33,7 @@ class DecksList extends Component  {
                     }
                 >
                   <View style={styles.deck}>
-                      {/* <Text style={styles.title}>{title}</Text> */}
+                      <Text style={styles.title}>{deck.title}</Text>
                       {/* <Text style={styles.count}> {decksList[0].questions.length} </Text> */}
                   </View>
                 </TouchableOpacity>
