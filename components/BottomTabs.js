@@ -1,9 +1,10 @@
 
 import React from "react";
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import DecksList from "./DecksList"
 import AddDeck from "./AddDeck"
+//https://reactnavigation.org/docs/tab-based-navigation/
 
 
 const Tab = createBottomTabNavigator();
@@ -11,21 +12,21 @@ const Tab = createBottomTabNavigator();
 function BottomTabs() {
     return (
     <Tab.Navigator
-        initialRouteName="DecksList"
+        initialRouteName="Home"
             screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
                 let Home;
 
-                if (route.name === 'DecksList') {
+                if (route.name === 'Home') {
                 Home = focused
                     ? 'ios-home'
                     : 'ios-home-outline';
                 } else if (route.name === 'AddDeck') {
                 Home = focused 
-                    ? 'ios-add-circle' 
-                    : 'ios-add-circle-outline';
+                    ? 'ios-add' 
+                    : 'ios-add-circle-outline'; ;
                 }
-                return <Ionicons name={DecksList} size={size} color={color} />;
+                return <Ionicons name={Home} size={size} color={color} />;
             },
             })}
             tabBarOptions={{

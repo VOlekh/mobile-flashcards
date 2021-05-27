@@ -15,6 +15,7 @@
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "expo": "^41.0.1",
+    "expo-notifications": "~0.11.6",
     "expo-splash-screen": "~0.10.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.5.4",
@@ -37,8 +38,7 @@
     "react-redux": "^7.2.4",
     "redux-thunk": "^2.3.0",
     "style-sheet": "^4.0.4",
-    "text": "^0.1.0",
-    "expo-notifications": "~0.11.6"
+    "text": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
