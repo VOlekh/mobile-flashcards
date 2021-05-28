@@ -29,12 +29,12 @@ class DecksList extends Component  {
               return (
                 <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate('IndividualDeck', { name: 'IndividualDeck' })
+                      navigation.navigate('IndividualDeck', { id: deck.title})
                     }
                 >
-                  <View style={styles.deck}>
+                  <View style={styles.deck} key={deck.title}>
                       <Text style={styles.title}>{deck.title}</Text>
-                      {/* <Text style={styles.count}> {decksList[0].questions.length} </Text> */}
+                      <Text style={styles.count}> {deck.questions.length} cards </Text>
                   </View>
                 </TouchableOpacity>
               )})

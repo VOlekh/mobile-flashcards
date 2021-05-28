@@ -5,9 +5,10 @@ import { connect } from "react-redux";
 
 
 class IndividualDeck extends Component  {
+
    
     render(){
-        const { navigation, route, deck } = this.props;
+        const { navigation, deck } = this.props;
 
         return (
             <View style={styles.conteiner}>
@@ -17,7 +18,7 @@ class IndividualDeck extends Component  {
                         {/* <Text style={styles.title}>{title}</Text> */}
                         <Text style={styles.title}>{deck.title}</Text>
                         {/* <Text style={styles.count}>{length} cards</Text> */}
-                        <Text style={styles.count}>{deck.questions.length}</Text>
+                        <Text style={styles.count}>{deck.questions.length} cards </Text>
                     </View>
                 </TouchableOpacity>
 
@@ -39,6 +40,16 @@ class IndividualDeck extends Component  {
                         color= "#464646"
                     /> 
                 </View>
+
+                <View style= {styles.button}>
+                    <Button
+                        onPress={() =>
+                            navigation.navigate('DeleteDeck', { name: 'DeleteDeck' })
+                        }
+                        title="Delete Deck"
+                        color= "#464646"
+                    /> 
+                </View>
                 
         </View>  
         )
@@ -46,12 +57,13 @@ class IndividualDeck extends Component  {
 }
 
 function mapStateToProps(state, { route, navigation }) {
-    const { deckID } = route.params;
+    const { id } = route.params;
     return {
-        deck: state[deckID],
+        deck: state[id],
         navigation,
     };
 }
+
 
 export default connect(mapStateToProps) (IndividualDeck);
 
