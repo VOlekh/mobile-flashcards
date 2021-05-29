@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 function AppNavigation() {
   return (   
         <Stack.Navigator initialRouteName="Home" headerMode="screen">
-            <Stack.Screen name="BottomTabs" component={BottomTabs} />
+            <Stack.Screen name="Cards" component={BottomTabs} />
             <Stack.Screen name="IndividualDeck" component={IndividualDeck} />
             <Stack.Screen name="Quiz" component={Quiz} />
             <Stack.Screen name="AddCard" component={AddCard}/>
