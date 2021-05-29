@@ -3,8 +3,11 @@ import { Text, View, Button, TextInput, StyleSheet, SafeAreaView, } from "react-
 
 
 
-function AddDeck() {
+function AddDeck(props) {
         const [text, onChangeText] = React.useState("Deck Title");
+        
+     
+
  
 return (
     <View> 
@@ -14,26 +17,27 @@ return (
             </Text>
          </View>
 
+         <View style={styles.deck} >
+
         <SafeAreaView style={styles.inputConteiner}>
-          
+   
             <TextInput
                 style={styles.input}
                 onChangeText={onChangeText}
                 value={text}
                 placeholder="Deck Title"
-                
             />
+      
         </SafeAreaView>
-
+        </View>
         
         <View style= {styles.button}>
             <Button
                 title="Save"
                 color= "#464646"
-                onPress={() => Alert.alert('Save')}
+                onPress={() => {handleSubmit}}
             /> 
         </View>
-
 
     </View>
 )
@@ -47,6 +51,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#464646",
       },
+
+    deck: {
+        backgroundColor: "#93B7BE",
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderRadius: 5,
+        // alignItems: "center",
+    },  
       
     button: {
         padding: 10,
@@ -83,12 +96,13 @@ const styles = StyleSheet.create({
         margin: 12,
         padding: 10,
         borderWidth: 0.7,
-        borderRadius: 2,
+        borderRadius: 5,
+        backgroundColor: "#ffffff",
       },
 
       inputConteiner:{
         marginVertical: 20,
-        marginHorizontal: 40,
+        marginHorizontal: 8,
       },
 
   });
