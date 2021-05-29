@@ -12,8 +12,15 @@ class IndividualDeck extends Component  {
 
         return (
             <View style={styles.conteiner}>
+                 <View style={styles.topTextContainer}>
+          <Text style={styles.topText}>Study every day to prepare for the interview. Good luck!</Text>
+        </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('Quiz', { name: 'Quiz' })
+                    }
+                     >
                     <View style={styles.deck}>
                         {/* <Text style={styles.title}>{title}</Text> */}
                         <Text style={styles.title}>{deck.title}</Text>
@@ -41,7 +48,7 @@ class IndividualDeck extends Component  {
                     /> 
                 </View>
 
-                <View style= {styles.button}>
+                <View style= {styles.buttonDelete}>
                     <Button
                         onPress={() =>
                             navigation.navigate('DeleteDeck', { name: 'DeleteDeck' })
@@ -72,8 +79,28 @@ const styles = StyleSheet.create({
     conteiner: {
         flex: 1,
       },
+    
+    topTextContainer: {
+        padding: 20,
+        marginVertical: 20,
+        marginHorizontal: 16,
+        alignItems: "center",
+        justifyContent: "center",
+        //backgroundColor: "#D5C7BC", 
+        backgroundColor: "#d9d9d9",
+        borderRadius: 5, 
+    },
+
+    topText:{
+        fontSize: 16,
+        color: "#464646",
+        fontStyle: "italic",
+        textAlign:  "center",
+    },
 
     deck: {
+      marginTop: 16,
+      marginBottom:300,
       backgroundColor: "#93B7BE",
       padding: 20,
       marginVertical: 8,
@@ -103,5 +130,17 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         shadowColor:"#454545",
     },
+
+    buttonDelete:{
+    
+        marginVertical: 20,
+        padding: 10,
+        marginHorizontal: 16,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#d5c7bd",
+        borderRadius: 5,
+        shadowColor:"#785964",
+    }
 
   });
