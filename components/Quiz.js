@@ -10,32 +10,33 @@ import {Surface, Shape} from '@react-native-community/art';
 class Quiz extends Component  {
 
     
-    state = { countCorrect:0, countIncorrect:0, currentCardId:0, currentQuestionView:true}
+    state = { countCorrect:0, countIncorrect:0, currentCardId:0, isQuestionShown:true}
 
     //Correct
     setCountCorrect = () => this.setState(
-        prevState => ({ ...prevState, countCorrect: this.state.countCorrect + 1 , currentCardId: this.state.currentCardId + 1 })
+        prevState => ({ ...prevState, countCorrect: this.state.countCorrect + 1 , currentCardId: this.state.currentCardId + 1 , isQuestionShown:true})
     )
 
     //Incorrrect
     setCountIncorrect = () => this.setState(
-        prevState => ({ ...prevState, countIncorrect: this.state.countIncorrect + 1, currentCardId: this.state.currentCardId + 1 })
+        prevState => ({ ...prevState, countIncorrect: this.state.countIncorrect + 1, currentCardId: this.state.currentCardId + 1 , isQuestionShown:true})
     )
 
-    //Flip
-    flipQuestionAnswer = () => this.setState(
-        prevState => ({ ...prevState, currentQuestionView: this.state.currentQuestionView })
+
+    flipQuestionAnswer  = () =>  this.setState(
+        prevState => ({ ...prevState,  isQuestionShown:false})
     )
 
+   
     //Restart
-    restart = () => {
-        currentCardId===0;
-    }
+    restart = () => this.setState(
+        prevState => ({ ...prevState,  currentCardId: 0, countCorrect:0, countIncorrect:0})
+    )
 
 
 
     render(){  
-        const {countCorrect, countIncorrect, currentCardId} = this.state;
+        const {countCorrect, countIncorrect, currentCardId, isQuestionShown} = this.state;
         let { navigation, questions, deck} = this.props;
         const questionsLength = questions.length;
         const percentCorrect = 100/questions.length*countCorrect;
@@ -46,15 +47,22 @@ class Quiz extends Component  {
         if (questions.length === currentCardId) {
             return (
               <View style={styles.container}>
-                  <View style={styles.topTextContainer}>
-                        <Text style={styles.topText}>Congrats, you have finished the Quis with the following results:</Text>
-                         <Text style={styles.topText} >Percent correct:  {percentCorrect}%</Text>                   
-                         <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminate={true} indeterminateAnimationDuration= {1000}/>
-                         <Text style={styles.topText}>Correct: {countCorrect}</Text>
-                         <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
-                  </View>
-              
-        
+
+                    <View style={styles.topTextContainer}> 
+                       
+                            <View>
+                                {percentCorrect > 50 
+                                    ?  <Text style={styles.topText}>Congrats, you have finished the Quiz with the following result:</Text> 
+                                    :  <Text style={styles.topText} >Do not give up, go through cards one more time to increase the result. </Text>
+                                }
+                            </View>
+                          
+                            <Text style={styles.topText}>Percent correct:  {percentCorrect}%</Text>                   
+                            <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminate={true} indeterminateAnimationDuration= {1000}/>
+                            <Text style={styles.topText}>Correct: {countCorrect}</Text>
+                            <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
+                    </View>
+                            
                     <View style= {styles.button}> 
                         <Button
                             title="Restart Quiz"
@@ -62,10 +70,31 @@ class Quiz extends Component  {
                             onPress={this.restart}
                         /> 
                     </View>
-                
+
               </View>
-            );
-          }
+            )
+        }
+
+//no cards situation
+        if (questions.length === 0) {
+            return (
+              <View style={styles.container}>
+
+                    <View style={styles.topTextContainer}> 
+                        <Text style={styles.topText}>Sorry, no cards at that moments under current deck.</Text>
+                    </View>
+                            
+                    <View style= {styles.button}> 
+                        <Button
+                            onPress={() =>
+                                navigation.navigate('Home', { name: 'Home' })
+                            }
+                        /> 
+                    </View>
+
+              </View>
+            )
+        }
 
 
 
@@ -81,13 +110,19 @@ class Quiz extends Component  {
                         <Text style={styles.topText}>Total: {questions.length}</Text>
 
                         <View style={styles.question} key={questions[currentCardId]}>
-                            <Text style={styles.count}>{questions[currentCardId].question}</Text>
+
+                        {isQuestionShown
+                                    ?   <Text style={styles.count}>{questions[currentCardId].question}</Text> 
+                                    :   <Text style={styles.count}>{questions[currentCardId].answer}</Text>
+                                }
+                           
+
                         </View>
 
                         <Button
                             title="Flip"
                             color= "#464646"
-                            onPress={this.flipQuestionAnswer}
+                            onPress={this.flipQuestionAnswer }
                         /> 
                     </View>
                 </TouchableOpacity>
