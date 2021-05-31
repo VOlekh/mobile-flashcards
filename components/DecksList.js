@@ -31,8 +31,9 @@ class DecksList extends Component  {
                     onPress={() =>
                       navigation.navigate('IndividualDeck', { id: deck.title})
                     }
+                    key={deck.title}
                 >
-                  <View style={styles.deck} key={deck.title}>
+                  <View style={styles.deck} >
                       <Text style={styles.title}>{deck.title}</Text>
                       <Text style={styles.count}> {deck.questions.length} cards </Text>
                   </View>
