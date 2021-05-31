@@ -18,7 +18,7 @@ class IndividualDeck extends Component  {
 
                 <TouchableOpacity
                     onPress={() =>
-                      navigation.navigate('Quiz', { name: 'Quiz' })
+                        navigation.navigate('Quiz', { id: deck.title})
                     }
                      >
                     <View style={styles.deck}>
@@ -32,7 +32,7 @@ class IndividualDeck extends Component  {
                 <View style= {styles.button}>
                     <Button
                         onPress={() =>
-                            navigation.navigate('Quiz', { name: 'Quiz' })
+                            navigation.navigate('Quiz', { id: deck.title})
                         }
                         title="Start Quiz"
                         color= "#464646"
