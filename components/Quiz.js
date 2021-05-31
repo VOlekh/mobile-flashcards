@@ -2,15 +2,19 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import { connect } from "react-redux";
-//https://www.linkedin.com/pulse/how-develop-counter-app-react-native-floating-button-mahmud-ahsan/
+import * as Progress from 'react-native-progress';
+import {Surface, Shape} from '@react-native-community/art';
+//https://snack.expo.io/embedded/@jiepeng/react-native-counter?preview=true&platform=ios&iframeId=zse3f2nh3y&theme=light
+
 
 class Quiz extends Component  {
 
+    
+    state = { countCorrect:0, countIncorrect:0, currentCardId:0, currentQuestionView:true}
+
     //Correct
-    state = { countCorrect: 0, countIncorrect: 0, currentCardId:0}
     setCountCorrect = () => this.setState(
         prevState => ({ ...prevState, countCorrect: this.state.countCorrect + 1 , currentCardId: this.state.currentCardId + 1 })
-
     )
 
     //Incorrrect
@@ -18,31 +22,72 @@ class Quiz extends Component  {
         prevState => ({ ...prevState, countIncorrect: this.state.countIncorrect + 1, currentCardId: this.state.currentCardId + 1 })
     )
 
+    //Flip
+    flipQuestionAnswer = () => this.setState(
+        prevState => ({ ...prevState, currentQuestionView: this.state.currentQuestionView })
+    )
+
+    //Restart
+    restart = () => {
+        currentCardId===0;
+    }
+
 
 
     render(){  
         const {countCorrect, countIncorrect, currentCardId} = this.state;
         let { navigation, questions, deck} = this.props;
         const questionsLength = questions.length;
+        const percentCorrect = 100/questions.length*countCorrect;
+        const percentCorrectBar= percentCorrect/100
+
+
+//Displays the percentage correct, once the quiz is complete
+        if (questions.length === currentCardId) {
+            return (
+              <View style={styles.container}>
+                  <View style={styles.topTextContainer}>
+                        <Text style={styles.topText}>Congrats, you have finished the Quis with the following results:</Text>
+                         <Text style={styles.topText} >Percent correct:  {percentCorrect}%</Text>                   
+                         <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminate={true} indeterminateAnimationDuration= {1000}/>
+                         <Text style={styles.topText}>Correct: {countCorrect}</Text>
+                         <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
+                  </View>
+              
+        
+                    <View style= {styles.button}> 
+                        <Button
+                            title="Restart Quiz"
+                            color= "#464646"
+                            onPress={this.restart}
+                        /> 
+                    </View>
+                
+              </View>
+            );
+          }
+
+
+
         return (
             <View style={styles.conteiner}>
 
                 <TouchableOpacity>
                     <View style={styles.deck}>
                         <Text style={styles.title}>{deck.title}</Text>
-                        <Text >card {currentCardId+1} out of {questions.length}</Text>
-                        <Text >Correct: {countCorrect}</Text>
-                        <Text >Incorrect: {countIncorrect}</Text>
-                        <Text >Total: {questions.length}</Text>
+                        <Text style={styles.topText}>Card {currentCardId+1} out of {questions.length}</Text>
+                        <Text style={styles.topText}>Correct: {countCorrect}</Text>
+                        <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
+                        <Text style={styles.topText}>Total: {questions.length}</Text>
 
                         <View style={styles.question} key={questions[currentCardId]}>
-                            <Text style={styles.count}>{  questions[currentCardId].question}</Text>
+                            <Text style={styles.count}>{questions[currentCardId].question}</Text>
                         </View>
 
                         <Button
                             title="Flip"
                             color= "#464646"
-                            onPress={this.setFlip}
+                            onPress={this.flipQuestionAnswer}
                         /> 
                     </View>
                 </TouchableOpacity>
@@ -141,4 +186,21 @@ const styles = StyleSheet.create({
         shadowColor:"#785964",
     },
 
+    topTextContainer: {
+        padding: 20,
+        marginVertical: 20,
+        marginHorizontal: 16,
+        alignItems: "center",
+        justifyContent: "center",
+        //backgroundColor: "#D5C7BC", 
+        backgroundColor: "#d9d9d9",
+        borderRadius: 5, 
+      },
+    
+      topText:{
+        fontSize: 16,
+        color: "#464646",
+        fontStyle: "italic",
+        textAlign:  "center",
+      },
   });
