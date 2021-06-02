@@ -3,10 +3,6 @@ import { getDecksInfo, timeToString, getDailyReminderValue, getMetricMetaInfo} f
 
 export const CARDS_STORAGE_KEY = 'Cards:decks'
 
-function getRandomNumber (max) {
-  return Math.floor(Math.random() * max) + 0
-}
-
 function setDefaultObjectShape () {
   let dummyData = getDecksInfo()
   const timestamp = Date.now()

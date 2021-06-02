@@ -27,10 +27,10 @@ export function addDeck(deck) {
     };
   }
   
-  export function deleteDeck(deckTitle) {
+  export function deleteDeck(deck) {
     return {
       type: DELETE_DECK,
-      title,
+      deck,
     };
   }
 

@@ -22,13 +22,13 @@ class Quiz extends Component  {
         prevState => ({ ...prevState, countIncorrect: this.state.countIncorrect + 1, currentCardId: this.state.currentCardId + 1 , isQuestionShown:true})
     )
 
-
+    //Flip Card
     flipQuestionAnswer  = () =>  this.setState(
         prevState => ({ ...prevState,  isQuestionShown:false})
     )
 
    
-    //Restart
+    //Restart, reset all counters
     restart = () => this.setState(
         prevState => ({ ...prevState,  currentCardId: 0, countCorrect:0, countIncorrect:0})
     )
@@ -38,7 +38,6 @@ class Quiz extends Component  {
     render(){  
         const {countCorrect, countIncorrect, currentCardId, isQuestionShown} = this.state;
         let { navigation, questions, deck} = this.props;
-        const questionsLength = questions.length;
         const percentCorrect = 100/questions.length*countCorrect;
         const percentCorrectBar= percentCorrect/100
 
@@ -49,18 +48,18 @@ class Quiz extends Component  {
               <View style={styles.container}>
 
                     <View style={styles.topTextContainer}> 
-                       
-                            <View>
-                                {percentCorrect > 50 
-                                    ?  <Text style={styles.topText}>Congrats, you have finished the Quiz with the following result:</Text> 
-                                    :  <Text style={styles.topText} >Do not give up, go through cards one more time to increase the result. </Text>
-                                }
-                            </View>
-                          
-                            <Text style={styles.topText}>Percent correct:  {percentCorrect}%</Text>                   
-                            <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminate={true} indeterminateAnimationDuration= {1000}/>
-                            <Text style={styles.topText}>Correct: {countCorrect}</Text>
-                            <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
+                    
+                        <View>
+                            {percentCorrect > 50 
+                                ?  <Text style={styles.topText}>Congrats, you have finished the Quiz with the following result:</Text> 
+                                :  <Text style={styles.topText} >Do not give up, go through cards one more time to increase the result. </Text>
+                            }
+                        </View>
+                        
+                        <Text style={styles.topText}>Percent correct:  {percentCorrect}%</Text>                   
+                        <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminate={true} indeterminateAnimationDuration= {1000}/>
+                        <Text style={styles.topText}>Correct: {countCorrect}</Text>
+                        <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
                     </View>
                             
                     <View style= {styles.button}> 

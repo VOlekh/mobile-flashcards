@@ -2,14 +2,24 @@ import React, { Component } from "react";
 import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
+import deleteDeckAsync from "../utilits/api"
+import { deleteDeck } from "../actions";
 
 
 class IndividualDeck extends Component  {
+  
 
-   
     render(){
-        const { navigation, deck } = this.props;
-
+   
+        const {navigation, deck} = this.props;
+        
+        const onDeleteDeck = (event) => {
+            event.preventDefault();
+            const {dispatch, navigation, deck } = this.props;
+            dispatch(deleteDeck(deck));
+            navigation.navigate('Home', { name: 'Home' });
+            //deleteDeckAsync(deck);
+        }
         return (
             <View style={styles.conteiner}>
                  <View style={styles.topTextContainer}>
@@ -50,9 +60,7 @@ class IndividualDeck extends Component  {
 
                 <View style= {styles.buttonDelete}>
                     <Button
-                        onPress={() =>
-                            navigation.navigate('DeleteDeck', { name: 'DeleteDeck' })
-                        }
+                        onPress={onDeleteDeck}
                         title="Delete Deck"
                         color= "#464646"
                     /> 
