@@ -39,11 +39,33 @@ class Quiz extends Component  {
         const {countCorrect, countIncorrect, currentCardId, isQuestionShown} = this.state;
         let { navigation, questions, deck} = this.props;
         const percentCorrect = 100/questions.length*countCorrect;
-        const percentCorrectBar= percentCorrect/100
+        const percentCorrectBar= percentCorrect/100;
+        // console.log(questions.length);
 
+//No cards situation
+        if (questions.length === 0) {
+            return (
+              <View style={styles.container}>
+
+                    <View style={styles.topTextContainer}> 
+                        <Text style={styles.topText}>Sorry, no cards at that moments under current deck.</Text>
+                    </View>
+                            
+                    <View style= {styles.button}> 
+                        <Button
+                            title="Home"
+                            onPress={() =>
+                                navigation.navigate('Home', { name: 'Home' })
+                            }
+                        /> 
+                    </View>
+
+              </View>
+            )
+        }
 
 //Displays the percentage correct, once the quiz is complete
-        if (questions.length === currentCardId) {
+       else  if (questions.length === currentCardId) {
             return (
               <View style={styles.container}>
 
@@ -73,29 +95,6 @@ class Quiz extends Component  {
               </View>
             )
         }
-
-//no cards situation
-        if (questions.length === 0) {
-            return (
-              <View style={styles.container}>
-
-                    <View style={styles.topTextContainer}> 
-                        <Text style={styles.topText}>Sorry, no cards at that moments under current deck.</Text>
-                    </View>
-                            
-                    <View style= {styles.button}> 
-                        <Button
-                            onPress={() =>
-                                navigation.navigate('Home', { name: 'Home' })
-                            }
-                        /> 
-                    </View>
-
-              </View>
-            )
-        }
-
-
 
         return (
             <View style={styles.conteiner}>
@@ -152,7 +151,7 @@ class Quiz extends Component  {
 
 function mapStateToProps(state, { route, navigation }) {
     const { id } = route.params;
-    console.log('State: ', state[id])
+    // console.log('State: ', state[id])
 
     return {
         deck: state[id],
