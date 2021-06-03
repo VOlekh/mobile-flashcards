@@ -16,7 +16,7 @@ class DecksList extends Component  {
    
   render(){
     let { navigation, decksList} = this.props;
-    console.log(decksList);
+    // console.log(decksList);
     return (
       <View>
       
@@ -49,7 +49,7 @@ class DecksList extends Component  {
 
 function mapStateToProps(state) {
   const decksList = Object.values(state);
-  console.log(decksList);
+  // console.log(decksList);
   return {
     decksList
   };
