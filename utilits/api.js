@@ -74,9 +74,10 @@ export const deleteDeckAsync = async (deck) => {
   const results = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
   if (results) {
     const data = JSON.parse(results);
-    delete data[deck];
-
-    await AsyncStorage.setItem(CARD_STORAGE_KEY, JSON.stringify(data));
+    delete data[deck.title];
+    // console.log("deleteAsync");
+    // console.log(data);
+    await AsyncStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(data));
     return data;
   }
   return {};
