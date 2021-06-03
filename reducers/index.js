@@ -16,14 +16,17 @@ export default function decks(state = {}, action) {
     case ADD_CARD:
         return {
             ...state,
-            [action.deckTitle]: {
-            ...state[action.deckTitle],
-            questions: [...state[action.deckTitle].questions, action.question],
+            [action.deck.title]: {
+            ...state[action.deck.title],
+            questions: [...state[action.deck.title].questions, action.question],
             },
         };
     case DELETE_DECK:
         const newState = Object.assign({}, state);
-        delete newState[action.deckTitle]
+        console.log("delete from state");
+        delete newState[action.deck.title];
+        // console.log(newState);
+        console.log("Delete_Deck");
         return newState;
     default:
         return state;
