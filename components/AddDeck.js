@@ -1,6 +1,4 @@
 
-//import React, { Component} from "react";
-
 import React, { useState} from "react";
 import { Text, View, Button, TextInput, StyleSheet, SafeAreaView, } from "react-native";
 import{addDeckAsync} from "../utilits/api"
@@ -8,43 +6,6 @@ import { addDeck } from "../actions";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 
-// const saveDeck = () => {
-    
-//     //const title = newDeck;
-//     const newDeck = (props) => {
-//         const [title, onChangeText] = useState("");
-//     console.log("New deck: ", newDeck);
-//     if (title !== "") {
-        
-//         const deckInfo = {
-//             [title]: {
-//                 title: title,
-//                 questions: [],
-//             }
-//         }
-//     }
-//     //addDeckAsync(title).then(() => this.props.dispatch(addDeck(newDeck)));
-//     if (!props.state[title]) {
-//         props.dispatch(addDeckAsync(deckInfo));
-//       }
-//     navigation.navigate('Home', { name: 'Home' });
-//     onChangeText("");
-// }
-// }
-
-// class AddDeck extends Component  {
-
-
-
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             title:''
-//         };
-//     }
-
-// render(){ 
-//     let {title, dispatch}=this.state;
 
 
 function AddDeck(props) {
@@ -55,9 +16,7 @@ function AddDeck(props) {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-       // dispatch(addDeck(title));
-        //setText("");
-        // save to DB after asynk addDeckAsync gave response with newDeck
+        // save to DB(actions) after asynk addDeckAsync gave response with newDeck
         addDeckAsync(title).then((newDeck) => dispatch(addDeck(newDeck)));
         navigation.navigate('Home', { name: 'Home' });
     };
@@ -98,19 +57,7 @@ function AddDeck(props) {
         </View>
     )
 }
-// }   
-// }
 
-  
-// function mapStateToProps(state) {
-//     const decksList = Object.values(state);
-//     console.log(decksList);
-//     return {
-//       decksList
-//     };
-//   }
-  
-//   export default connect(mapStateToProps)(AddDeck);
 export default AddDeck;
 
 // -------------Styles------------------------
