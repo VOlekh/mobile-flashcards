@@ -1,25 +1,33 @@
 import React, { Component } from "react";
 import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
-import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import deleteDeckAsync from "../utilits/api"
-import { deleteDeck } from "../actions";
+import {deleteDeckAsync} from "../utilits/api"
+import {deleteDeck} from "../actions/index";
+import decks from "../reducers";
+
 
 
 class IndividualDeck extends Component  {
+
   
+    // const dispatch = useDispatch();
+    
+    onDeleteDeck = (event) => {
+        event.preventDefault();
+        const {deck, dispatch} = this.props;
+        deleteDeckAsync(deck).then ( () => dispatch(deleteDeck(deck)));
+     }
 
     render(){
-   
         const {navigation, deck} = this.props;
-        
-        const onDeleteDeck = (event) => {
-            event.preventDefault();
-            const {dispatch, navigation, deck } = this.props;
-            dispatch(deleteDeck(deck));
+        console.log(deck);
+//deleted deck and it is undefined, app tryes to render screen with undefined value
+        if (!deck)
+        {
             navigation.navigate('Home', { name: 'Home' });
-            //deleteDeckAsync(deck);
+            return null;
         }
+     
         return (
             <View style={styles.conteiner}>
                  <View style={styles.topTextContainer}>
@@ -46,6 +54,7 @@ class IndividualDeck extends Component  {
                         }
                         title="Start Quiz"
                         color= "#464646"
+                        disabled={deck.questions.length === 0}
                     /> 
                 </View>
                 <View style= {styles.button}>
@@ -60,7 +69,7 @@ class IndividualDeck extends Component  {
 
                 <View style= {styles.buttonDelete}>
                     <Button
-                        onPress={onDeleteDeck}
+                        onPress={this.onDeleteDeck}
                         title="Delete Deck"
                         color= "#464646"
                     /> 
