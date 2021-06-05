@@ -3,9 +3,7 @@ import React, { useState} from "react";
 import { Text, View, Button, TextInput, StyleSheet, SafeAreaView, } from "react-native";
 import{addDeckAsync} from "../utilits/api"
 import { addDeck } from "../actions";
-import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
-
 
 
 function AddDeck(props) {
@@ -13,7 +11,6 @@ function AddDeck(props) {
     const dispatch = useDispatch();
     const {navigation} = props;
 
-    
     const handleSubmit = (e) => {
         e.preventDefault();
         // save to DB(actions) after asynk addDeckAsync gave response with newDeck
@@ -36,7 +33,6 @@ function AddDeck(props) {
     
                 <TextInput
                     style={styles.input}
-                    //onChangeText={(title) => { this.setState({ title: title})}}
                     onChangeText={title => setText(title)}
                     defaultValue={title}
                     maxLength={50}

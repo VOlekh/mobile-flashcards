@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
 import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import { connect } from "react-redux";
 import * as Progress from 'react-native-progress';
@@ -9,7 +8,6 @@ import {Surface, Shape} from '@react-native-community/art';
 
 class Quiz extends Component  {
 
-    
     state = { countCorrect:0, countIncorrect:0, currentCardId:0, isQuestionShown:true}
 
     //Correct
@@ -26,8 +24,7 @@ class Quiz extends Component  {
     flipQuestionAnswer  = () =>  this.setState(
         prevState => ({ ...prevState,  isQuestionShown:false})
     )
-
-   
+ 
     //Restart, reset all counters
     restart = () => this.setState(
         prevState => ({ ...prevState,  currentCardId: 0, countCorrect:0, countIncorrect:0})
