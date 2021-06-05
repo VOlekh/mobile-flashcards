@@ -41,7 +41,7 @@ class Quiz extends Component  {
         const percentCorrectBar= percentCorrect/100;
         // console.log(questions.length);
 
-//No cards situation
+    //No cards situation
         if (questions.length === 0) {
             return (
               <View style={styles.container}>
@@ -63,7 +63,7 @@ class Quiz extends Component  {
             )
         }
 
-//Displays the percentage correct, once the quiz is complete
+    //Displays the percentage correct, once the quiz is complete
        else  if (questions.length === currentCardId) {
             return (
               <View style={styles.container}>
