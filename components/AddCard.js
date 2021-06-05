@@ -1,9 +1,9 @@
 import React, { useState} from "react";
-import { Text, View, Button, TextInput ,SafeAreaView, Alert, StyleSheet, } from "react-native";
-import { connect } from "react-redux";
+import { Text, View, TextInput ,SafeAreaView, StyleSheet, } from "react-native";
 import {addCardAsync} from "../utilits/api"
 import {addCard} from "../actions/index";
 import { useDispatch } from "react-redux";
+import GrayButton from "./GrayButton"
 
 function AddCard(props) {
  
@@ -56,13 +56,12 @@ function AddCard(props) {
                   </SafeAreaView>
               </View>
 
-              <View style= {styles.button}>
-                  <Button
-                      title="Save"
-                      color= "#464646"
-                      onPress={handleSubmit}
-                  /> 
-              </View>
+              <GrayButton
+                  onPress={handleSubmit}
+                  title="Save"
+                >
+                Save
+              </GrayButton>
               
         </View>  
       )
@@ -94,45 +93,34 @@ const styles = StyleSheet.create({
       color: "#464646",
     },
       
-    button: {
-        padding: 10,
-        marginVertical: 5,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#d9d9d9",
-        borderRadius: 5,
-        shadowColor:"#454545",
+    topTextContainer: {
+      padding: 20,
+      marginVertical: 20,
+      marginHorizontal: 16,
+      alignItems: "center",
+      justifyContent: "center",
+      //backgroundColor: "#D5C7BC", 
+      backgroundColor: "#d9d9d9",
+      borderRadius: 5, 
+    },
+    
+    topText:{
+      fontSize: 16,
+      color: "#464646",
+      fontStyle: "italic",
+      textAlign:  "center",
     },
 
-    topTextContainer: {
-        padding: 20,
-        marginVertical: 20,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        //backgroundColor: "#D5C7BC", 
-        backgroundColor: "#d9d9d9",
-        borderRadius: 5, 
-      },
-    
-      topText:{
-        fontSize: 16,
-        color: "#464646",
-        fontStyle: "italic",
-        textAlign:  "center",
-      },
-
     input: {
-        height: 60,
-        padding: 10,
-        borderWidth: 0.7,
-        borderRadius: 5,
-        backgroundColor: "#ffffff"
-      },
+      height: 60,
+      padding: 10,
+      borderWidth: 0.7,
+      borderRadius: 5,
+      backgroundColor: "#ffffff"
+    },
 
-      inputConteiner:{
-        marginVertical: 10,
-      },
+    inputConteiner:{
+      marginVertical: 10,
+    },
 
   });

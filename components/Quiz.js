@@ -3,6 +3,8 @@ import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import { connect } from "react-redux";
 import * as Progress from 'react-native-progress';
 import {Surface, Shape} from '@react-native-community/art';
+import GrayButton from "./GrayButton"
+import RedButton from "./RedButton"
 //https://snack.expo.io/embedded/@jiepeng/react-native-counter?preview=true&platform=ios&iframeId=zse3f2nh3y&theme=light
 
 
@@ -110,7 +112,6 @@ class Quiz extends Component  {
                                     ?   <Text style={styles.count}>{questions[currentCardId].question}</Text> 
                                     :   <Text style={styles.count}>{questions[currentCardId].answer}</Text>
                                 }
-                           
 
                         </View>
 
@@ -118,28 +119,24 @@ class Quiz extends Component  {
                             title="Flip"
                             color= "#464646"
                             onPress={this.flipQuestionAnswer }
-                        /> 
+                        />
+
                     </View>
                 </TouchableOpacity>
+        
+                <GrayButton
+                    onPress={this.setCountCorrect}
+                    title="Correct"
+                >
+                    Correct
+                </GrayButton>
 
-
-{/* TBD: rebuild button with TouchableOpacity */}
-                <View style= {styles.button}>
-                    <Button
-                        onPress={this.setCountCorrect}
-                        title="Correct"
-                        color= "#464646" 
-                    /> 
-                    
-                </View>
-
-                <View style= {styles.buttonIncorrect}>
-                    <Button
-                        onPress={this.setCountIncorrect}
-                        title="Incorrect"
-                        color= "#464646"
-                    /> 
-                </View>    
+                <RedButton
+                     onPress={this.setCountIncorrect}
+                     title="Incorrect"
+                >
+                    Inorrect
+                </RedButton> 
                 
         </View>  
         )
@@ -194,35 +191,12 @@ const styles = StyleSheet.create({
         color: "#464646",
     },
       
-    button: {
-        padding: 10,
-        marginVertical: 5,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#d9d9d9",
-        borderRadius: 5,
-        shadowColor:"#454545",
-    },
-
-    buttonIncorrect:{
-        padding: 10,
-        marginVertical: 5,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#d5c7bd",
-        borderRadius: 5,
-        shadowColor:"#785964",
-    },
-
     topTextContainer: {
         padding: 20,
         marginVertical: 20,
         marginHorizontal: 16,
         alignItems: "center",
         justifyContent: "center",
-        //backgroundColor: "#D5C7BC", 
         backgroundColor: "#d9d9d9",
         borderRadius: 5, 
       },

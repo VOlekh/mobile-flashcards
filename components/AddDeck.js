@@ -4,6 +4,7 @@ import { Text, View, Button, TextInput, StyleSheet, SafeAreaView, } from "react-
 import{addDeckAsync} from "../utilits/api"
 import { addDeck } from "../actions";
 import { useDispatch } from "react-redux";
+import GrayButton from "./GrayButton"
 
 
 function AddDeck(props) {
@@ -41,14 +42,13 @@ function AddDeck(props) {
         
             </SafeAreaView>
             </View>
-            
-            <View style= {styles.button}>
-                <Button
-                    title="Save"
-                    color= "#464646"
-                    onPress={handleSubmit}
-                /> 
-            </View>
+
+            <GrayButton
+                  onPress={handleSubmit}
+                  title="Save"
+                >
+                Save
+            </GrayButton> 
 
         </View>
     )
@@ -69,20 +69,7 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         marginHorizontal: 16,
         borderRadius: 5,
-        // alignItems: "center",
     },  
-      
-    button: {
-        padding: 10,
-        marginVertical: 5,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        //backgroundColor: "#D5C7BC", 
-        backgroundColor: "#d9d9d9",
-        borderRadius: 5,
-        shadowColor:"#454545",
-    },
 
     topTextContainer: {
         padding: 20,
@@ -90,7 +77,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
         alignItems: "center",
         justifyContent: "center",
-        //backgroundColor: "#D5C7BC", 
         backgroundColor: "#d9d9d9",
         borderRadius: 5, 
       },

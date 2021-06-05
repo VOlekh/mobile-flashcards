@@ -3,7 +3,8 @@ import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import { connect } from "react-redux";
 import {deleteDeckAsync} from "../utilits/api"
 import {deleteDeck} from "../actions/index";
-import AppButton from "./AppButton"
+import GrayButton from "./GrayButton"
+import RedButton from "./RedButton"
 
 
 class IndividualDeck extends Component  {
@@ -37,38 +38,34 @@ class IndividualDeck extends Component  {
                     }
                      >
                     <View style={styles.deck}>
-                        {/* <Text style={styles.title}>{title}</Text> */}
                         <Text style={styles.title}>{deck.title}</Text>
-                        {/* <Text style={styles.count}>{length} cards</Text> */}
                         <Text style={styles.count}>{deck.questions.length} cards </Text>
                     </View>
                 </TouchableOpacity>
 
-                <AppButton
+                <GrayButton
                     onPress={() =>
                         navigation.navigate('Quiz', { id: deck.title})
                     }
                     title="Start Quiz"
-                    color= "#464646"
                     disabled={deck.questions.length === 0}
                 >
                     Start Quiz
-                </AppButton>
+                </GrayButton>
                
-                <AppButton
+                <GrayButton
                     onPress={() => navigation.navigate('AddCard', { id: deck.title})}
                     title="Add Card"
                 >
                     Add Card
-                </AppButton>
+                </GrayButton>
 
-                <View style= {styles.buttonDelete}>
-                    <Button
-                        onPress={this.onDeleteDeck}
-                        title="Delete Deck"
-                        color= "#464646"
-                    /> 
-                </View>
+                <RedButton
+                    onPress={this.onDeleteDeck}
+                    title="Delete Deck"
+                >
+                    Delete Deck
+                </RedButton>
                 
         </View>  
         )
@@ -132,27 +129,4 @@ const styles = StyleSheet.create({
       color: "#464646",
     },
       
-    button: {
-        padding: 10,
-        marginVertical: 5,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#d9d9d9",
-        borderRadius: 5,
-        shadowColor:"#454545",
-    },
-
-    buttonDelete:{
-    
-        marginVertical: 20,
-        padding: 10,
-        marginHorizontal: 16,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#d5c7bd",
-        borderRadius: 5,
-        shadowColor:"#785964",
-    }
-
   });

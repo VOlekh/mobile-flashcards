@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, TouchableOpacity, StyleSheet, Platform } from "react-native";
+import { Text, TouchableOpacity, StyleSheet} from "react-native";
 
-function AppButton({ children, onPress}) {
+function GrayButton({ children, onPress}) {
   return (
     <TouchableOpacity style= {styles.button}
       onPress={onPress}
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AppButton;
+export default GrayButton;
