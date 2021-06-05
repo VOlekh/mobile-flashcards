@@ -48,7 +48,7 @@ class IndividualDeck extends Component  {
                         navigation.navigate('Quiz', { id: deck.title})
                     }
                     title="Start Quiz"
-                    disabled={deck.questions.length === 0}
+                    disableValue = {deck.questions.length === 0}
                 >
                     Start Quiz
                 </GrayButton>

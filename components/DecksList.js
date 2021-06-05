@@ -3,6 +3,8 @@ import { Text, View,  TouchableOpacity, StyleSheet, ScrollView } from "react-nat
 import { getDecksAsync  } from "../utilits/api";
 import { receiveDecks } from "../actions/index";
 import { connect } from "react-redux";
+import Header from "./Header"
+
 
 
 
@@ -19,7 +21,8 @@ class DecksList extends Component  {
     // console.log(decksList);
     return (
       <View>
-      
+      <Header></Header>
+
         <View style={styles.topTextContainer}>
           <Text style={styles.topText}>Study collections of flashcards, create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.</Text>
         </View>

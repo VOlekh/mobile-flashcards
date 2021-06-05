@@ -1,7 +1,5 @@
-import React, { Component }  from "react";
+import React from "react";
 import {Text, View,  StyleSheet} from "react-native";
-import { connect } from "react-redux";
-
 
 
 export default class AppHeader extends React.Component  {
@@ -29,7 +27,7 @@ const styles = StyleSheet.create({
 appTitleContainer:{
     padding: 20,
     marginBottom: 7,
-    marginTop:80,
+    marginTop:16,
     marginHorizontal: 16,
     alignItems: "center",
     justifyContent: "center",

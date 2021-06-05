@@ -37,7 +37,7 @@ class Quiz extends Component  {
     render(){  
         const {countCorrect, countIncorrect, currentCardId, isQuestionShown} = this.state;
         let { navigation, questions, deck} = this.props;
-        const percentCorrect = 100/questions.length*countCorrect;
+        const percentCorrect = Math.round(100/questions.length*countCorrect);
         const percentCorrectBar= percentCorrect/100;
         // console.log(questions.length);
 
@@ -78,18 +78,18 @@ class Quiz extends Component  {
                         </View>
                         
                         <Text style={styles.topText}>Percent correct:  {percentCorrect}%</Text>                   
-                        <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminate={true} indeterminateAnimationDuration= {1000}/>
+                        <Progress.Bar progress={percentCorrectBar} width={200} height={16} color="#93B7BE"  indeterminateAnimationDuration= {1000}/>
                         <Text style={styles.topText}>Correct: {countCorrect}</Text>
                         <Text style={styles.topText}>Incorrect: {countIncorrect}</Text>
                     </View>
-                            
-                    <View style= {styles.button}> 
-                        <Button
-                            title="Restart Quiz"
-                            color= "#464646"
-                            onPress={this.restart}
-                        /> 
-                    </View>
+               
+
+                    <GrayButton
+                        onPress={this.restart}
+                        title="Restart Quiz"
+                    >
+                        Restart Quiz
+                    </GrayButton>
 
               </View>
             )

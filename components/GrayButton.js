@@ -1,10 +1,12 @@
 import React from "react";
 import { Text, TouchableOpacity, StyleSheet} from "react-native";
 
-function GrayButton({ children, onPress}) {
+function GrayButton({ children, onPress, disableValue}) {
   return (
     <TouchableOpacity style= {styles.button}
       onPress={onPress}
+      disabled={disableValue}
+      activeOpacity={disableValue ? 1 : 0.5}
     >
       <Text style={styles.text}>{children}</Text>
     </TouchableOpacity>
