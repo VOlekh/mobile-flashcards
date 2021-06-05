@@ -58,14 +58,14 @@ export const addDeckAsync = async (title) => {
   return newDeck;
 };
 
-export const addCardAsync = async (title, question) => {
-  const value = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
-  const data = JSON.parse(decks);
-  const deck = data[title];
+export const addCardAsync = async (title, newCard) => {
+  const data = await AsyncStorage.getItem(CARDS_STORAGE_KEY);
+  const decks = JSON.parse(data);
+  const deck = decks[title];
   deck.questions.push(newCard);
   const newDeck = { [title]: deck };
-  return await AsyncStorage.mergeItem(
-    CARD_STORAGE_KEY,
+  await AsyncStorage.mergeItem(
+    CARDS_STORAGE_KEY,
     JSON.stringify(newDeck)
   );
 };

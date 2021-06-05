@@ -19,11 +19,11 @@ export function addDeck(deck) {
     };
   }
   
-  export function addCard(deckTitle, question) {
+  export function addCard(title, newCard) {
     return {
       type: ADD_CARD,
       title,
-      question,
+      newCard
     };
   }
   
