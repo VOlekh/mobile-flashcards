@@ -3,13 +3,14 @@ import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import { connect } from "react-redux";
 import {deleteDeckAsync} from "../utilits/api"
 import {deleteDeck} from "../actions/index";
+import AppButton from "./AppButton"
 
 
 class IndividualDeck extends Component  {
 
     onDeleteDeck = (event) => {
         event.preventDefault();
-        AddCard
+        const { deck, dispatch } = this.props;
         deleteDeckAsync(deck).then ( () => dispatch(deleteDeck(deck)));
      }
 
@@ -43,25 +44,23 @@ class IndividualDeck extends Component  {
                     </View>
                 </TouchableOpacity>
 
-                <View style= {styles.button}>
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('Quiz', { id: deck.title})
-                        }
-                        title="Start Quiz"
-                        color= "#464646"
-                        disabled={deck.questions.length === 0}
-                    /> 
-                </View>
-                <View style= {styles.button}>
-                    <Button
-                        onPress={() =>
-                            navigation.navigate('AddCard', { id: deck.title})
-                        }
-                        title="Add Card"
-                        color= "#464646"
-                    /> 
-                </View>
+                <AppButton
+                    onPress={() =>
+                        navigation.navigate('Quiz', { id: deck.title})
+                    }
+                    title="Start Quiz"
+                    color= "#464646"
+                    disabled={deck.questions.length === 0}
+                >
+                    Start Quiz
+                </AppButton>
+               
+                <AppButton
+                    onPress={() => navigation.navigate('AddCard', { id: deck.title})}
+                    title="Add Card"
+                >
+                    Add Card
+                </AppButton>
 
                 <View style= {styles.buttonDelete}>
                     <Button
