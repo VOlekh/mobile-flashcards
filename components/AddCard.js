@@ -1,48 +1,76 @@
-import React from "react";
+import React, { useState} from "react";
 import { Text, View, Button, TextInput ,SafeAreaView, Alert, StyleSheet, } from "react-native";
+import { connect } from "react-redux";
+import {addCardAsync} from "../utilits/api"
+import {addCard} from "../actions/index";
+import { useDispatch } from "react-redux";
 
-function AddCard( navigation, route ) {
-    return (
-        <View>
-            <View style={styles.topTextContainer}>
-                <Text style={styles.topText}>
-                Enter in the question and the answer, save the new question.
-                </Text>
-            </View>
+function AddCard(props) {
+ 
+  const [question, setTextQuestion] = useState("");
+  const [answer, setTextAnswer] = useState("");
 
-            <View style={styles.deck}>
-                <Text style={styles.title}>Deck 1</Text>
-                <SafeAreaView style={styles.inputConteiner}>    
-                    <TextInput
-                        style={styles.input}
-                        // onChangeText={onChangeText}
-                        // value={text}
-                        placeholder="Card Question"
-                    />
-                </SafeAreaView>
+ // const { deck } = route.params;
+  const dispatch = useDispatch();
+  const {navigation, route} = props;
+  const title = route.params.id;
+  
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      const newCard = {
+        question,
+        answer
+      };
+      // save to DB(actions) after asynk addCardAsync gave response with newDeck
+      addCardAsync(title, newCard).then(() => dispatch(addCard(title, newCard)));
+      navigation.navigate('Home', { name: 'Home' });
+  };
 
-                <SafeAreaView style={styles.inputConteiner}>    
-                    <TextInput
-                        style={styles.input}
-                        // onChangeText={onChangeText}
-                        // value={text}
-                        placeholder="Card Answer"
-                    />
-                </SafeAreaView>
-            </View>
 
-            <View style= {styles.button}>
-                <Button
-                    title="Save"
-                    color= "#464646"
-                    onPress={() => Alert.alert('Save')}
-                /> 
-            </View>
-            
-      </View>  
-    )
-}
+      return (
+          <View>
+              <View style={styles.topTextContainer}>
+                  <Text style={styles.topText}>
+                  Enter in the question and the answer, save the card.
+                  </Text>
+              </View>
+
+              <View style={styles.deck}>
+                  <Text style={styles.title}>{title}</Text>
+                  <SafeAreaView style={styles.inputConteiner}>    
+                      <TextInput
+                          style={styles.input}
+                          onChangeText={question => setTextQuestion(question)}
+                          defaultValue={question}
+                          placeholder="Card Question"
+                      />
+                  </SafeAreaView>
+
+                  <SafeAreaView style={styles.inputConteiner}>    
+                      <TextInput
+                          style={styles.input}
+                          onChangeText={answer => setTextAnswer(answer)}
+                          defaultValue={answer}
+                          placeholder="Card Answer"
+                      />
+                  </SafeAreaView>
+              </View>
+
+              <View style= {styles.button}>
+                  <Button
+                      title="Save"
+                      color= "#464646"
+                      onPress={handleSubmit}
+                  /> 
+              </View>
+              
+        </View>  
+      )
+    }
+
+
 export default AddCard;
+
 
 // -------------Styles------------------------
 const styles = StyleSheet.create({
