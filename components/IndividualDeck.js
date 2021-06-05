@@ -5,6 +5,10 @@ import {deleteDeckAsync} from "../utilits/api"
 import {deleteDeck} from "../actions/index";
 import GrayButton from "./GrayButton"
 import RedButton from "./RedButton"
+import {
+    clearLocalNotification,
+    setLocalNotification
+   } from "../utilits/helpers";
 
 
 class IndividualDeck extends Component  {
@@ -18,14 +22,18 @@ class IndividualDeck extends Component  {
     render(){
         const {navigation, deck} = this.props;
         console.log(deck);
-//deleted deck, it is undefined, app tryes to render screen with undefined value
-// avoid this with check (!deck)
+        //deleted deck, it is undefined, app tryes to render screen with undefined value
+        // avoid this with check (!deck)
         if (!deck)
         {
             navigation.navigate('Home', { name: 'Home' });
             return null;
+           
         }
-     
+        
+        clearLocalNotification()
+        .then(setLocalNotification)
+
         return (
             <View style={styles.conteiner}>
                  <View style={styles.topTextContainer}>

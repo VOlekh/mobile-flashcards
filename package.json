@@ -40,7 +40,9 @@
     "react-redux": "^7.2.4",
     "redux-thunk": "^2.3.0",
     "style-sheet": "^4.0.4",
-    "text": "^0.1.0"
+    "text": "^0.1.0",
+    "expo-permissions": "~12.0.1",
+    "expo-location": "~12.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
