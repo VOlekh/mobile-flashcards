@@ -3,25 +3,21 @@ import { Text, View, Button, TouchableOpacity, StyleSheet} from "react-native";
 import { connect } from "react-redux";
 import {deleteDeckAsync} from "../utilits/api"
 import {deleteDeck} from "../actions/index";
-import decks from "../reducers";
-
 
 
 class IndividualDeck extends Component  {
 
-  
-    // const dispatch = useDispatch();
-    
     onDeleteDeck = (event) => {
         event.preventDefault();
-        const {deck, dispatch} = this.props;
+        AddCard
         deleteDeckAsync(deck).then ( () => dispatch(deleteDeck(deck)));
      }
 
     render(){
         const {navigation, deck} = this.props;
         console.log(deck);
-//deleted deck and it is undefined, app tryes to render screen with undefined value
+//deleted deck, it is undefined, app tryes to render screen with undefined value
+// avoid this with check (!deck)
         if (!deck)
         {
             navigation.navigate('Home', { name: 'Home' });
@@ -60,7 +56,7 @@ class IndividualDeck extends Component  {
                 <View style= {styles.button}>
                     <Button
                         onPress={() =>
-                            navigation.navigate('AddCard', { name: 'AddCard' })
+                            navigation.navigate('AddCard', { id: deck.title})
                         }
                         title="Add Card"
                         color= "#464646"
