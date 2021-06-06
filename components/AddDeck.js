@@ -16,6 +16,7 @@ function AddDeck(props) {
         e.preventDefault();
         // save to DB(actions) after asynk addDeckAsync gave response with newDeck
         addDeckAsync(title).then((newDeck) => dispatch(addDeck(newDeck)));
+        setText("");
         navigation.navigate('Home', { name: 'Home' });
     };
 
@@ -48,7 +49,7 @@ function AddDeck(props) {
                   title="Save"
                 >
                 Save
-            </GrayButton> 
+            </GrayButton>
 
         </View>
     )
