@@ -16,6 +16,9 @@ This project encompasses the fundamental aspects of building a native applicatio
 - routing, 
 - user input. 
 
+# Design
+![image](/img/Cards.gif)
+
 # Launch app
 
 - install project dependencies with `npm install`.
